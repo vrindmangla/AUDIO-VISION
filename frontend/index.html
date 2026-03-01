@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AUDIOVISION - AI-powered assistive object detection with speech" />
+  <title>AUDIOVISION | AI-Powered Assistive Vision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="bg-gradient" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3" />
+        <circle cx="24" cy="24" r="12" stroke="url(#logo-grad)" stroke-width="2" fill="none" />
+        <path d="M24 14v20M14 24h20" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="24" cy="24" r="4" fill="url(#logo-grad)" />
+        <defs>
+          <linearGradient id="logo-grad" x1="12" y1="12" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00d4ff" />
+            <stop offset="1" stop-color="#7c3aed" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <h1 class="title">AUDIOVISION</h1>
+        <p class="tagline">AI-powered assistive vision — see with sound</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="high-contrast-btn" class="btn btn-ghost" aria-pressed="false" aria-label="Toggle high contrast mode">
+        <span class="btn-icon" aria-hidden="true">◐</span> High contrast
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="camera-section">
+      <div class="camera-wrapper">
+        <div class="camera-glow" aria-hidden="true"></div>
+        <div class="camera-inner">
+          <img id="video-feed" src="" alt="Live camera feed with object detection overlay" class="video-feed" />
+          <div id="camera-placeholder" class="camera-placeholder">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Camera feed will appear when you start detection</p>
+          </div>
+          <div id="camera-stopped" class="camera-placeholder hidden">
+            <p>Detection stopped</p>
+            <p class="hint">Click <strong>Start Detection</strong> to begin</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-card">
+        <h2 class="panel-title">
+          <span>Detected objects</span>
+          <span id="object-count" class="badge">0</span>
+        </h2>
+        <ul id="detection-list" class="detection-list" aria-live="polite"></ul>
+        <div class="panel-actions">
+          <button type="button" id="clear-history-btn" class="btn btn-ghost btn-sm">Clear history</button>
+          <button type="button" id="download-log-btn" class="btn btn-ghost btn-sm">Download log (JSON)</button>
+        </div>
+      </div>
+      <div class="panel-card">
+        <h2 class="panel-title">Detection log</h2>
+        <div id="log-container" class="log-container" aria-live="polite"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="controls">
+    <div class="controls-inner">
+      <button type="button" id="start-btn" class="btn btn-primary">
+        <span class="btn-icon">▶</span> Start detection
+      </button>
+      <button type="button" id="stop-btn" class="btn btn-danger" disabled>
+        <span class="btn-icon">■</span> Stop detection
+      </button>
+      <label class="control-group">
+        <span class="control-label">Voice</span>
+        <button type="button" id="voice-toggle" class="btn btn-toggle" aria-pressed="true" aria-label="Voice on/off">
+          <span class="toggle-inner"></span>
+          <span class="toggle-text">On</span>
+        </button>
+      </label>
+      <label class="control-group">
+        <span class="control-label">Sensitivity</span>
+        <input type="range" id="sensitivity" min="0" max="100" value="50" class="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" />
+        <span id="sensitivity-value" class="slider-value">50%</span>
+      </label>
+      <button type="button" id="screenshot-btn" class="btn btn-ghost" title="Capture screenshot">
+        <span class="btn-icon">📷</span> Screenshot
+      </button>
+    </div>
+    <p class="shortcuts-hint">Shortcuts: <kbd>S</kbd> Start · <kbd>E</kbd> Stop · <kbd>V</kbd> Voice · <kbd>?</kbd> Help</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

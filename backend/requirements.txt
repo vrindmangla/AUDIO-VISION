@@ -1,0 +1,7 @@
+# AUDIOVISION - Backend dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+opencv-python-headless>=4.8.0
+ultralytics>=8.0.0
+pyttsx3>=2.90
